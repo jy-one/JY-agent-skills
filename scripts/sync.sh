@@ -5,7 +5,7 @@
 set -e
 
 # 配置区
-SKILL_REPO="$HOME/my-agent-skills"
+SKILL_REPO="$HOME/JY-agent-skills"
 CONFIG_FILE="$SKILL_REPO/config.yaml"
 
 # 默认 Agent 目录（可被 config.yaml 覆盖）
