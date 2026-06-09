@@ -7,6 +7,8 @@
 | 仓库 | 地址 | 导入时间 | Skills 数量 |
 |------|------|---------|------------|
 | sugarforever/01coder-agent-skills | https://github.com/sugarforever/01coder-agent-skills | 2026-06-09 | 22 |
+| obra/superpowers | https://github.com/obra/superpowers | 2026-06-09 | 14 |
+| vercel-labs/skills | https://github.com/vercel-labs/skills | 2026-06-09 | 1 |
 
 ## 仓库 Skills 明细
 
@@ -43,3 +45,36 @@
 | claude-session-manager | Claude Code 会话管理 |
 | mining-session-skills | 从会话提取 skills |
 | interactive-input | 交互式输入组件 |
+
+---
+
+### obra/superpowers
+
+**通用 skills (shared/)** - 14 个
+
+| Skill | 功能 |
+|-------|------|
+| brainstorming | 创意工作前的头脑风暴 |
+| dispatching-parallel-agents | 并行任务分发 |
+| executing-plans | 执行实现计划 |
+| finishing-a-development-branch | 完成开发分支 |
+| receiving-code-review | 接收代码审查 |
+| requesting-code-review | 请求代码审查 |
+| subagent-driven-development | 子代理驱动开发 |
+| systematic-debugging | 系统化调试 |
+| test-driven-development | 测试驱动开发 |
+| using-git-worktrees | 使用 Git worktrees |
+| using-superpowers | 使用 superpowers 框架 |
+| verification-before-completion | 完成前验证 |
+| writing-plans | 编写实现计划 |
+| writing-skills | 编写 skills |
+
+---
+
+### vercel-labs/skills
+
+**通用 skills (shared/)** - 1 个
+
+| Skill | 功能 |
+|-------|------|
+| find-skills | 发现和安装 agent skills |
