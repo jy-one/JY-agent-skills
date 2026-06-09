@@ -1,0 +1,23 @@
+# 临时文件
+*.tmp
+*.log
+*.swp
+*~
+
+# 备份文件
+*.backup.*
+*.bak
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器文件
+.vscode/
+.idea/
+*.sublime-*
+
+# 敏感信息
+.env
+*.key
+*.pem

@@ -1,0 +1,47 @@
+# 跨 Agent Skill 配置文件
+# 修改此文件后，同步脚本会自动读取
+
+# Agent 目录配置
+agents:
+  hermes:
+    skill_dir: "~/.hermes/skills"
+    description: "Hermes Agent 技能目录"
+  
+  claude:
+    skill_dir: "~/.claude/skills"
+    description: "Claude Code 技能目录"
+  
+  codex:
+    skill_dir: "~/.codex/skills"
+    description: "Codex 技能目录"
+
+# 同步规则
+sync_rules:
+  # 共享技能同步到所有 agent
+  shared:
+    target: all
+    description: "共享技能同步到所有 Agent"
+  
+  # 专用技能只同步到对应 agent
+  hermes:
+    target: hermes
+    description: "Hermes 专用技能"
+  
+  claude-code:
+    target: claude
+    description: "Claude Code 专用技能"
+  
+  codex:
+    target: codex
+    description: "Codex 专用技能"
+
+# 备份配置
+backup:
+  enabled: true
+  max_backups: 5  # 保留最近5个备份
+  backup_dir: "~/skill-backups"
+
+# 日志配置
+logging:
+  level: "info"  # debug, info, warn, error
+  file: "~/my-agent-skills/sync.log"
