@@ -1,0 +1,75 @@
+<!--
+  Template: terminal-vertical (竖屏族 / vertical family)
+  风格: 终端黑 - 纯黑 + 等宽荧光字 + 扫描线 + 光标
+  支持比例: 9:16 (1080×1920, 默认) / 3:4 (1080×1440, 把 --cv-h 改 1440px)
+  适配: 抖音 / 视频号 竖屏短视频 ; 横屏用 terminal.html
+  文字收在中央安全带 (加 body.show-guide 看辅助线)
+  identity test 同 terminal.html
+
+  默认精简版 (element budget ≤ 5,见 SKILL.md 原则 1):
+    出厂只放 4 个元素 - kicker(.top) + 命令提示符+主标题(.prompt + .title) + 副标(.sub) + 一处署名(.foot .name)。
+    扫描线 / 微辉 / 提示符 `:~$` / 闪烁光标块都是终端身份装置,保留。
+    右上序号(.top 内 [ ● INDEX ]) / 提示符里的 ./EYEBROW 命令名 / 右下日期 默认不放;
+    确有信息价值时,从 body 末尾「可选 opt-in」注释取用(CSS 已保留)。
+
+  Customization points (替换占位符,改 CSS 变量):
+    1. CSS :root - 改 --term 切荧光色(绿→琥珀 #ffb000);改 --cv-h 切 9:16 / 3:4
+    2. .top 左 kicker - 品类 / 工具
+    3. .title - 主标题,两个 <span class="stack"> 各一行,末尾保留 .cur 光标块
+    4. .sub   - 中文副标题 (自带 // 注释前缀)
+    5. .foot .name - 作者署名 + 频道名 (全图只此一处署名)
+    可选 (默认不放): 右上 [ ● INDEX ] 序号 / 提示符命令名 ./EYEBROW / 右下日期
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" /><meta name="color-scheme" content="dark">
+<title>{{TITLE}} · Cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000;--ink:#d7ffe3;--muted:#3f7a55;--term:#33ff77;--term-dim:#1f7a44;
+  --font-mono:'JetBrains Mono',monospace;--font-zh:'Noto Sans SC',sans-serif;
+  --cv-w:1080px; --cv-h:1920px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--font-mono);-webkit-font-smoothing:antialiased;}
+.cover{width:var(--cv-w);height:var(--cv-h);position:relative;background:var(--bg);overflow:hidden;}
+.cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg, rgba(51,255,119,.05) 0 2px, transparent 2px 4px);}
+.cover::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 50% at 50% 50%, rgba(51,255,119,.10), transparent 70%);}
+.content{position:relative;z-index:5;padding:90px 72px;height:100%;display:flex;flex-direction:column;justify-content:center;}
+.top{position:absolute;top:90px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:26px;letter-spacing:.12em;color:var(--term-dim);}
+.dot{color:var(--term);}
+.prompt{font-size:32px;letter-spacing:.04em;color:var(--term);margin-bottom:28px;}
+.prompt .path{color:var(--term-dim);}
+.title{font-weight:800;font-size:248px;line-height: 1.1;letter-spacing:-.01em;color:var(--term);text-shadow:0 0 28px rgba(51,255,119,.55);}
+.title .stack{display:block;}
+.title .cur{display:inline-block;width:.5em;height:.84em;background:var(--term);vertical-align:-.06em;margin-left:.1em;box-shadow:0 0 22px rgba(51,255,119,.7);}
+.sub{font-family:var(--font-zh);font-weight:500;font-size:54px;line-height:1.22;margin-top:36px;color:var(--ink);}
+.sub::before{content:"// ";color:var(--term-dim);}
+.foot{position:absolute;bottom:90px;left:72px;right:72px;display:flex;justify-content:space-between;font-size:26px;letter-spacing:.1em;color:var(--muted);}
+.foot .name{font-family:var(--font-zh);color:var(--term);}
+.guide{position:absolute;left:40px;right:40px;top:228px;bottom:228px;border:2px dashed rgba(255,120,120,.7);display:none;z-index:9;}
+body.show-guide .guide{display:block;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="top"><span>{{KICKER}}</span></div>
+  <div class="content">
+    <div class="prompt"><span class="path">vsw@coder</span>:~$ </div>
+    <h1 class="title"><span class="stack">{{TITLE_LINE_1}}</span><span class="stack">{{TITLE_LINE_2}}<span class="cur"></span></span></h1>
+    <div class="sub">{{SUBTITLE_HTML}}</div>
+  </div>
+  <div class="foot"><span class="name">{{AUTHOR_NAME}} · {{CHANNEL}}</span></div>
+  <div class="guide"></div>
+
+  <!-- 可选 opt-in (默认不放;承载信息时取用,CSS 已保留):
+       右上序号    → .top 改成: <span>{{KICKER}}</span><span>[ <span class="dot">●</span> {{INDEX}} ]</span>
+       提示符命令名 → .prompt 改成: <span class="path">vsw@coder</span>:~$ ./{{EYEBROW}}
+       右下日期    → .foot 内 .name 后加: <span>{{DATE}}</span>
+  -->
+</div>
+</body>
+</html>

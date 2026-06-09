@@ -1,0 +1,82 @@
+<!--
+  Template: aurora (横屏族 / horizontal family)
+  风格: 极光渐变 - 深底 + 多彩光晕 (Vercel / Linear / OpenAI 那种 AI/SaaS 现代审美)
+  支持比例: 16:9 (1920×1080, 默认) / 16:10 (1920×1200, 把 --cv-h 改 1200px)
+  适配: YouTube / Bilibili / 横屏短视频 ; 竖屏用 aurora-vertical.html
+  identity test: ①深色底 (近黑) ②2-3 团彩色径向光晕 (蓝/紫/青) 柔和叠加 ③大字偏细 (weight ≤500) ④无硬边框/无硬阴影, 整体通透
+  身份装饰(必留): 深底 + 极光多彩光晕 (.cover::before) + 细网格层 (.cover::after) + 通透细字 = aurora 身份,勿删。
+
+  默认精简版 (element budget ≤ 5,见 SKILL.md 原则 1):
+    出厂只放 4 个元素 - kicker(.top 左) + 主标题(.title) + 副标(.sub) + 一处署名(.foot .name)。
+    页眉 index 编号 / eyebrow 小字 / 页脚日期 默认不放;
+    确有信息价值时,从下面 body 末尾的「可选 opt-in」注释里取用(CSS 已保留)。
+
+  Customization points (替换占位符,改 CSS 变量):
+    1. CSS :root - 改 --a1/--a2/--a3 调极光三色,--bg 调底色
+    2. .kicker {{KICKER}} - 页眉 kicker (品类 / 工具),可在词间加 <span class="dot">·</span>
+    3. .title - 主标题,两行 <span class="stack">,第二行 .alt 走极光渐变
+    4. .sub - 中文副标题,重点词加 <span class="mark">
+    5. .foot .name - 作者署名 · 频道 (全图只此一处署名)
+    可选 (默认不放): .index(页眉编号) / .eyebrow(标题上方小字) / 页脚日期
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" /><meta name="color-scheme" content="dark">
+<title>{{TITLE}} · Cover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05060a;--ink:#f3f5fa;--ink-soft:#aab3c5;--muted:#6b7488;
+  --a1:#5b8cff;--a2:#9b5bff;--a3:#33e0d0;   /* 极光三色 */
+  --accent:#8aa0ff;
+  --font-display:'Inter','Noto Sans SC',sans-serif;--font-zh:'Noto Sans SC',sans-serif;--font-mono:'JetBrains Mono',monospace;
+  --cv-w:1920px; --cv-h:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--font-display);-webkit-font-smoothing:antialiased;}
+.cover{width:var(--cv-w);height:var(--cv-h);position:relative;background:var(--bg);overflow:hidden;}
+/* 极光光晕层 */
+.cover::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(50% 60% at 18% 22%, rgba(91,140,255,0.55), transparent 60%),
+  radial-gradient(45% 55% at 82% 30%, rgba(155,91,255,0.45), transparent 60%),
+  radial-gradient(55% 60% at 60% 95%, rgba(51,224,208,0.32), transparent 60%);
+  filter:blur(8px);pointer-events:none;}
+/* 细微网格提精致感 */
+.cover::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,#000 40%,transparent 75%);pointer-events:none;}
+.content{position:relative;z-index:5;padding:88px 104px;height:100%;display:flex;flex-direction:column;}
+.top{display:flex;justify-content:space-between;align-items:center;}
+.kicker{font-family:var(--font-mono);font-size:24px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);}
+.kicker .dot{color:var(--a3);}
+.index{font-family:var(--font-mono);font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.hero{flex:1;display:flex;flex-direction:column;justify-content:center;max-width:84%;}
+.eyebrow{font-family:var(--font-mono);font-size:26px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:30px;}
+.title{font-weight:500;font-size:264px;line-height: 1.06;letter-spacing:-.035em;text-transform:lowercase;color:var(--ink);}
+.title .stack{display:block;}
+.title .alt{background:linear-gradient(110deg,var(--a1),var(--a2) 45%,var(--a3));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.sub{font-family:var(--font-zh);font-weight:500;font-size:62px;line-height:1.15;margin-top:38px;color:var(--ink-soft);}
+.sub .mark{color:var(--ink);font-weight:700;}
+.foot{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:24px;letter-spacing:.1em;color:var(--muted);}
+.foot .name{font-family:var(--font-zh);color:var(--ink);font-weight:500;}
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="content">
+    <div class="top"><div class="kicker">{{KICKER}}</div></div>
+    <div class="hero">
+      <h1 class="title"><span class="stack">{{TITLE_LINE_1}}</span><span class="stack alt">{{TITLE_LINE_2}}</span></h1>
+      <div class="sub">{{SUBTITLE_HTML}}</div>
+    </div>
+    <div class="foot"><span class="name">{{AUTHOR_NAME}} · {{CHANNEL}}</span></div>
+
+    <!-- 可选 opt-in (默认精简不放;仅当承载信息时取用,CSS 已保留):
+         页眉编号    → .top 内 .kicker 后加: <div class="index">{{INDEX}}</div>
+         标题上方小字 → .hero 内 <h1> 前加: <div class="eyebrow">{{EYEBROW}}</div>
+         页脚日期    → .foot 内 .name 后加: <span>{{DATE}}</span>
+    -->
+  </div>
+</div>
+</body>
+</html>
