@@ -68,7 +68,7 @@ update_repo() {
     else
         log_info "  克隆仓库..."
         mkdir -p "$(dirname "$temp_repo")"
-        git clone --quiet "$repo_url" "$temp_repo"
+        git clone --quiet --depth 1 "$repo_url" "$temp_repo"
     fi
     
     # 检查 skills 目录
