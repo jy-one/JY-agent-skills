@@ -10,6 +10,12 @@
 | obra/superpowers | https://github.com/obra/superpowers | 2026-06-09 | 14 |
 | vercel-labs/skills | https://github.com/vercel-labs/skills | 2026-06-09 | 1 |
 
+## 自建 Skills
+
+| Skill | 功能 | 创建时间 |
+|-------|------|---------|
+| industry-stock-analysis | 行业与上市公司分析框架（股析脚本） | 2026-06-17 |
+
 ## 仓库 Skills 明细
 
 ### sugarforever/01coder-agent-skills
