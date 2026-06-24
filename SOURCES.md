@@ -8,13 +8,13 @@
 
 ## 已导入仓库
 
-| 仓库 | 地址 | 导入时间 | Skills 数量 |
-|------|------|---------|------------|
-| sugarforever/01coder-agent-skills | https://github.com/sugarforever/01coder-agent-skills | 2026-06-09 | 22 |
-| obra/superpowers | https://github.com/obra/superpowers | 2026-06-09 | 14 |
-| vercel-labs/skills | https://github.com/vercel-labs/skills | 2026-06-09 | 1 |
-| waditu-tushare/skills@tushare | https://github.com/waditu-tushare/skills | 2026-06-23 | 1（仅本地） |
-| shouldnotappearcalm/a-share-skill@a-share-data | https://github.com/shouldnotappearcalm/a-share-skill | 2026-06-23 | 1（仅本地） |
+| 仓库 | 地址 | 导入时间 | Skills 数量 | 状态 |
+|------|------|---------|------------|------|
+| obra/superpowers | https://github.com/obra/superpowers | 2026-06-09 | 14 | ✅ 保留 |
+| vercel-labs/skills | https://github.com/vercel-labs/skills | 2026-06-09 | 1 | ✅ 保留 |
+| sugarforever/01coder-agent-skills | https://github.com/sugarforever/01coder-agent-skills | 2026-06-09 | 17 | ❌ 已移除（2026-06-24） |
+| waditu-tushare/skills@tushare | https://github.com/waditu-tushare/skills | 2026-06-23 | 1 | 仅本地 |
+| shouldnotappearcalm/a-share-skill@a-share-data | https://github.com/shouldnotappearcalm/a-share-skill | 2026-06-23 | 1 | 仅本地 |
 
 ---
 
@@ -49,7 +49,7 @@
 
 ---
 
-## 仓库 Skills 分类明细
+## 仓库 Skills 分类明细（21个）
 
 ### investing-research/（6个）— 自建
 
@@ -61,16 +61,6 @@
 | industry-stock-analysis | 行业与个股综合分析（旧版框架） | 自建 |
 | peer-comparator | 可比公司对比 | 自建 |
 | news-pulse | 股价异动归因 | 自建 |
-
-### creative/（5个）— sugarforever/01coder-agent-skills
-
-| Skill | 功能 | 来源 |
-|-------|------|------|
-| cover-design | 封面设计（HTML/CSS，15种风格模板） | sugarforever |
-| cover-image | 封面图片生成（16种设计风格） | sugarforever |
-| diagram-to-image | Mermaid图表/Markdown表格转图片 | sugarforever |
-| slides-video | 幻灯片驱动的口播视频 | sugarforever |
-| video-planner | 视频策划与发布材料准备 | sugarforever |
 
 ### software-development/（8个）— obra/superpowers
 
@@ -85,23 +75,7 @@
 | using-git-worktrees | Git worktrees隔离开发 | obra |
 | using-superpowers | superpowers框架使用指南 | obra |
 
-### productivity/（4个）— sugarforever/01coder-agent-skills
-
-| Skill | 功能 | 来源 |
-|-------|------|------|
-| promote-post | 推广已发布文章 | sugarforever |
-| publish-substack-article | 发布到Substack | sugarforever |
-| publish-x-article | 发布到X（Twitter） | sugarforever |
-| publish-zsxq-article | 发布到知识星球 | sugarforever |
-
-### social-media/（2个）— sugarforever/01coder-agent-skills
-
-| Skill | 功能 | 来源 |
-|-------|------|------|
-| share-reading | 分享阅读心得到社交媒体 | sugarforever |
-| tweet-insight | 从推文出发深度阅读整理 | sugarforever |
-
-### other/（13个）— 混合来源
+### other/（7个）— 混合来源
 
 | Skill | 功能 | 来源 |
 |-------|------|------|
@@ -112,9 +86,30 @@
 | receiving-code-review | 接收代码审查 | obra |
 | requesting-code-review | 请求代码审查 | obra |
 | verification-before-completion | 完成前验证 | obra |
-| add-feishu | 添加飞书频道 | sugarforever |
-| fpl-copilot | FPL（梦幻英超）助手 | sugarforever |
-| personal-chinese-writing-style | 中文写作风格 | sugarforever |
-| subtitle-correction | 字幕校正 | sugarforever |
-| nextjs-security-scan | Next.js安全扫描 | sugarforever |
-| python-security-scan | Python安全扫描 | sugarforever |
+
+---
+
+## 已移除 Skills（17个）
+
+2026-06-24 从仓库中移除，来源为 sugarforever/01coder-agent-skills。
+如需使用，直接从原仓库安装：`npx skills@latest add sugarforever/01coder-agent-skills`
+
+| Skill | 原分类 | 功能 |
+|-------|--------|------|
+| cover-design | creative | 封面设计（HTML/CSS，15种风格模板） |
+| cover-image | creative | 封面图片生成（16种设计风格） |
+| diagram-to-image | creative | Mermaid图表/Markdown表格转图片 |
+| slides-video | creative | 幻灯片驱动的口播视频 |
+| video-planner | creative | 视频策划与发布材料准备 |
+| promote-post | productivity | 推广已发布文章 |
+| publish-substack-article | productivity | 发布到Substack |
+| publish-x-article | productivity | 发布到X（Twitter） |
+| publish-zsxq-article | productivity | 发布到知识星球 |
+| share-reading | social-media | 分享阅读心得到社交媒体 |
+| tweet-insight | social-media | 从推文出发深度阅读整理 |
+| add-feishu | other | 添加飞书频道 |
+| fpl-copilot | other | FPL（梦幻英超）助手 |
+| personal-chinese-writing-style | other | 中文写作风格 |
+| subtitle-correction | other | 字幕校正 |
+| nextjs-security-scan | other | Next.js安全扫描 |
+| python-security-scan | other | Python安全扫描 |
