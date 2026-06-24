@@ -126,9 +126,27 @@ sync_to_agent() {
     fi
     
     # 同步 shared 目录（所有 agent 都需要）
+    # 支持两层结构: shared/category/skill-name/
     if [ "$source_type" = "shared" ] || [ "$source_type" = "all" ]; then
-        for skill in "$SKILL_REPO/shared"/*/; do
-            [ -d "$skill" ] && sync_skill "$skill" "$target_dir" "$dry_run" "$force"
+        for category in "$SKILL_REPO/shared"/*/; do
+            [ -d "$category" ] || continue
+            local cat_name=$(basename "$category")
+            # 检查是否是分类目录（包含子目录且子目录有SKILL.md）
+            local has_skills=false
+            for sub in "$category"*/; do
+                [ -f "$sub/SKILL.md" ] && has_skills=true && break
+            done
+            if [ "$has_skills" = "true" ]; then
+                # 两层结构: category/skill
+                local cat_target="$target_dir/$cat_name"
+                [ "$dry_run" = "false" ] && mkdir -p "$cat_target"
+                for skill in "$category"*/; do
+                    [ -d "$skill" ] && sync_skill "$skill" "$cat_target" "$dry_run" "$force"
+                done
+            elif [ -f "$category/SKILL.md" ]; then
+                # 一层结构: skill 直接在 shared 下
+                sync_skill "$category" "$target_dir" "$dry_run" "$force"
+            fi
         done
     fi
     
